@@ -153,6 +153,7 @@ class Benchmarker:
                 self.time_logger.mark_started_database()
 
             # Start webapp
+            # This line starting to build image
             container = test.start()
             self.time_logger.mark_test_starting()
             if container is None:

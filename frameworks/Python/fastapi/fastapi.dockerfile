@@ -2,6 +2,10 @@ FROM python:3.11
 
 WORKDIR /fastapi
 
+ENV http_proxy "http://proxy-dmz.intel.com:911"
+ENV https_proxy "http://proxy-dmz.intel.com:912"
+ENV no_proxy "*.intel.com,intel.com,localhost,127.0.0.1"
+
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
