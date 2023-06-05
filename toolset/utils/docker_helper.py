@@ -200,10 +200,16 @@ class DockerHelper:
             if self.benchmarker.config.mode == "debug":
                 ports = {test.port: test.port}
 
+            host_dir = "/home/changyan/django"
+            container_dir = "/home/changyan/django"
+
             container = self.server.containers.run(
                 "techempower/tfb.test.%s" % test.name,
                 name=name,
                 command=docker_cmd,
+                volumes={
+                     host_dir: {"bind": container_dir, "mode": "rw"}
+                },
                 network=self.benchmarker.config.network,
                 network_mode=self.benchmarker.config.network_mode,
                 ports=ports,
